@@ -3,6 +3,14 @@
 const omit = require('lodash/omit')
 const uniq = require('lodash/uniq')
 
+// todo: use Object.fromEntries when changing to Node 12+
+const fromEntries = (entries) => {
+	return entries.reduce((acc, [key, val]) => {
+		acc[key] = val
+		return acc
+	}, {})
+}
+
 const allowedFlags = [
 	'x', 'type'
 ]
@@ -47,7 +55,7 @@ const getXs = (argv, firstRow) => {
 
 	// handle `--x:foo t1 --x:bar t2`
 	const xs = flags.map(({axis, val}) => [axis, val])
-	return {xs: Object.fromEntries(xs)}
+	return {xs: fromEntries(xs)}
 }
 
 const getTypes = (argv, firstRow) => {
@@ -65,7 +73,7 @@ const getTypes = (argv, firstRow) => {
 
 	// handle `--type:foo spline --type:bar step`
 	const types = flags.map(({axis, val}) => [axis, val])
-	return {types: Object.fromEntries(types)}
+	return {types: fromEntries(types)}
 }
 
 const getConfig = (argv, firstRow) => {

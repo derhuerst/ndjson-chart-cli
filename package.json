@@ -1,7 +1,7 @@
 {
 	"name": "ndjson-chart-cli",
 	"description": "Visualize newline-delimited JSON as an interactive line chart.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"main": "index.js",
 	"bin": {
 		"ndjson-to-line-chart": "./cli.js"
