@@ -1,0 +1,33 @@
+{
+	"name": "ndjson-chart-cli",
+	"description": "Visualize newline-delimited JSON as an interactive line chart.",
+	"version": "1.0.0",
+	"main": "index.js",
+	"bin": {
+		"ndjson-to-line-chart": "./cli.js"
+	},
+	"files": [
+		"cli.js",
+		"example.ndjson"
+	],
+	"keywords": [
+		"ndjson",
+		"json",
+		"csv",
+		"chart",
+		"graph",
+		"visualize",
+		"visualization"
+	],
+	"author": "Jannis R <mail@jannisr.de>",
+	"homepage": "https://github.com/derhuerst/ndjson-chart-cli",
+	"repository": "derhuerst/ndjson-chart-cli",
+	"bugs": "https://github.com/derhuerst/ndjson-chart-cli/issues",
+	"license": "ISC",
+	"engines": {
+		"node": ">=10"
+	},
+	"dependencies": {
+		"mri": "^1.1.4"
+	}
+}
