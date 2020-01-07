@@ -2,7 +2,6 @@
 
 const omit = require('lodash/omit')
 const uniq = require('lodash/uniq')
-const {Transform} = require('stream')
 
 const allowedFlags = [
 	'x', 'type'
@@ -77,10 +76,10 @@ const getConfig = (argv, firstRow) => {
 }
 
 // todo: optimize this using `Buffer`s of JSON?
-const createIngester = (argv) => {
+const c3ConfigGenerator = (argv) => {
 	const data = Object.create(null)
 	let firstRow, cols, i = 0
-	const ingest = (row, _, cb) => {
+	const ingest = (row) => {
 		if (i === 0) {
 			firstRow = row
 			cols = Object.keys(row)
@@ -94,28 +93,22 @@ const createIngester = (argv) => {
 			data[col].push(row[col])
 		}
 		i++
-		cb()
 	}
 
-	const flush = (cb) => {
-		const c3Config = {
+	const generate = () => {
+		return JSON.stringify({
+			bindto: '#graph',
 			data: {
 				...getConfig(argv, firstRow),
 				columns: Object.values(data)
 			}
-		}
-
-		cb(null, Buffer.from(JSON.stringify(c3Config), 'utf-8'))
+		}) + '\n'
 	}
 
-	return new Transform({
-		objectMode: true,
-		transform: ingest,
-		flush
-	})
+	return {ingest, generate}
 }
 
 module.exports = {
 	getConfig,
-	createIngester
+	c3ConfigGenerator
 }
