@@ -25,9 +25,22 @@ if (argv.version || argv.v) {
 }
 
 const showError = (err) => {
+	if (!err) return;
 	if (process.env.NODE_ENV === 'dev') console.error(err)
 	else console.error(err && err.message || (err + ''))
 	process.exit(1)
 }
 
+const pump = require('pump')
+const {parse: ndjsonParser} = require('ndjson')
+const {createIngester} = require('.')
+
+pump(
+	process.stdin,
+	ndjsonParser(),
+	createIngester(argv),
+	// todo: head, tail
+	process.stdout,
+	showError
+)
 // todo
