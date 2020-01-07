@@ -4,7 +4,8 @@ node_js:
   - 'lts/*'
   - '10'
 script:
-  - cat example.ndjson | ./cli.js >/dev/null
+  - npm test
+  - ./example.sh
 cache: npm
 notifications:
   email:

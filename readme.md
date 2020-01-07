@@ -23,7 +23,17 @@ Or use [`npx`](https://npmjs.com/package/npx). ✨
 
 ```
 Usage:
-    cat data.ndjson | ndjson-to-line-chart >chart.html
+    cat data.ndjson | ndjson-to-chart >chart.html
+Options:
+	--x             Set the X axis of all fields to another field.
+	--x:{field}     Set the X axis of {field} to another field.
+	--type          Show all fields as a specific type of chart.
+	                  see https://c3js.org/reference.html#data-type
+	--type:{field}  Show {field} as a type of chart.
+	                  see https://c3js.org/reference.html#data-type
+Examples:
+	ndjson-to-chart --x t <node_modules/ndjson-chart-cli/example.ndjson
+	ndjson-to-chart --x:temperature time1 --type:temperature area-spline <measurements.ndjson
 ```
 
 

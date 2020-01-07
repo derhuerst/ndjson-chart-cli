@@ -9,7 +9,9 @@
 	"files": [
 		"cli.js",
 		"lib",
-		"example.ndjson"
+		"example.sh",
+		"example.ndjson",
+		"test.js"
 	],
 	"keywords": [
 		"ndjson",
@@ -33,5 +35,9 @@
 		"mri": "^1.1.4",
 		"ndjson": "^1.5.0",
 		"pump": "^3.0.0"
+	},
+	"scripts": {
+		"test": "node test.js",
+		"prepublishOnly": "npm test"
 	}
 }
